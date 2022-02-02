@@ -1,4 +1,4 @@
-package com.nn
+package com.openbean.spark_training
 
 import org.specs2.mutable._
 

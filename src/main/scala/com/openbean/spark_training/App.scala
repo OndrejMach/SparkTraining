@@ -1,4 +1,4 @@
-package com.nn
+package com.openbean.spark_training
 
 /**
  * Hello world!

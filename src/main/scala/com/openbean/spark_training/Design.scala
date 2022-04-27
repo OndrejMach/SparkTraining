@@ -21,14 +21,13 @@ class GenericWriter extends Writer[Row]{
 }
 
 trait Processor {
-  def processData(): Unit
+  def processData(): Dataset[Reviewer]
 }
 
-class ProcessData(reader: Reader[Reviewer], writer: Writer[Reviewer]) extends Processor {
-  override def processData(): Unit = {
+class ProcessData(reader: Reader[Reviewer]) extends Processor {
+  override def processData(): Dataset[Reviewer] = {
     val input  = reader.getData()
-    val result= input.filter("age = 45")
-    writer.writeData(result)
+    input.filter("age = 45")
   }
 }
 
@@ -39,16 +38,10 @@ class ReviewersReader(path: String )(implicit sparkSession: SparkSession) extend
   }
 }
 
-class ReviewerTestReader(implicit sparkSession: SparkSession) extends Reader[Reviewer] {
-  override def getData(): Dataset[Reviewer] = {
-    import sparkSession.implicits._
-    Seq(Reviewer(id = "dfs", name = "John", age = 45, gender = "Male",salary = 4.5)).toDS()
-  }
-}
 object Design {
   def main(args: Array[String]): Unit = {
     implicit val sparkSession = SparkSession.builder().master("local[*]").appName("production").getOrCreate()
-    val reader : Reader[Reviewer] = new ReviewerTestReader()
+    val reader : Reader[Reviewer] = new ReviewersReader()
     val writer : Writer[Reviewer] = new OnScreenWriter()
 
     val processor = new ProcessData(reader,writer)

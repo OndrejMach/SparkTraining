@@ -45,8 +45,6 @@ class ReviewerTestReader(implicit sparkSession: SparkSession) extends Reader[Rev
     Seq(Reviewer(id = "dfs", name = "John", age = 45, gender = "Male",salary = 4.5)).toDS()
   }
 }
-
-
 object Design {
   def main(args: Array[String]): Unit = {
     implicit val sparkSession = SparkSession.builder().master("local[*]").appName("production").getOrCreate()

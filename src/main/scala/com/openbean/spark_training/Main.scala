@@ -37,6 +37,8 @@ object Main {
     //reviewers.show(false)
 
     val reviews = spark.read.json("data/reviews_small.json.gz")
+    reviews.printSchema()
+
     import spark.implicits._
     val result = reviews
       .join(reviewers, col("reviewerID") === col("id"))

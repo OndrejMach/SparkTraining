@@ -41,13 +41,13 @@ class ReviewersReader(path: String )(implicit sparkSession: SparkSession) extend
 object Design {
   def main(args: Array[String]): Unit = {
     implicit val sparkSession = SparkSession.builder().master("local[*]").appName("production").getOrCreate()
-    val reader : Reader[Reviewer] = new ReviewersReader()
+    /*val reader : Reader[Reviewer] = new ReviewersReader()
     val writer : Writer[Reviewer] = new OnScreenWriter()
 
     val processor = new ProcessData(reader,writer)
 
     processor.processData()
-
+*/
 
   }
 }

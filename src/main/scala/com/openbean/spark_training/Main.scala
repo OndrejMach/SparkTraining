@@ -51,7 +51,7 @@ object Main {
       .withColumn("firstname", $"names".getItem(0))
       .withColumn("middle_name", when(size($"names") > 2, $"names".getItem(1)).otherwise(null))
       .withColumn("last_name", when(size($"names") > 2, $"names".getItem(2)).otherwise($"names".getItem(1)))
-      .show(false)
+
 
     //spark.read.json("data/reviewers_small.json.gz").printSchema()
 

@@ -1,5 +1,5 @@
 package com.openbean.spark_training
-
+/*
 case class Employee(id: Long, name: String, address: Option[String])
 
 object ScalaExamples {
@@ -44,3 +44,4 @@ object ScalaExamples {
     println(petr.address.getOrElse("No Address specified"))
   }
 }
+*/

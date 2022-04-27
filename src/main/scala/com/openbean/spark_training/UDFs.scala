@@ -1,7 +1,7 @@
 package com.openbean.spark_training
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{col, udf}
+import org.apache.spark.sql.functions._
 
 object UDFs extends App{
   def concatenate(i : Employee): String = {
@@ -25,7 +25,6 @@ object UDFs extends App{
     .as[Employee]
 
   df.filter(_.id == 1 ).map(concatenate(_)).toDF("Concatenated").show()
-
   case class Reviewer(age: Long, gender: String, id: String, name: String, salary: Double)
   print(spark.version)
   import spark.implicits._
